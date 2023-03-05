@@ -90,16 +90,24 @@
 <script>
 export default {
   data: () => ({
-    items: [{
+    items: [
+      {
       cod: '336256AM',
-      desc: 'fghfgfh',
-      preco: '456',
-      marca: 'hjk',
+      desc: 'Cabo Embreagem NXR200',
+      preco: '65,90',
+      marca: 'VEI',
       qtde: 23,
       qtde_und: 1,
-
-      
-    },]
+       },
+      {
+      cod: '223256',
+      desc: 'shsv',
+      preco: '65,90',
+      marca: 'VEI',
+      qtde: 23,
+      qtde_und: 1,
+       },
+     ]
   })
 }
 </script>

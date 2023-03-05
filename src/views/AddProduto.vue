@@ -22,7 +22,7 @@
       :error-messages="preco.errorMessage.value"
       label="Preço da venda"
       prefix="R$"
-      type="Float"
+      type="number"
     ></v-text-field>
 
     <v-select
@@ -37,7 +37,7 @@
       :error-messages="qtde.errorMessage.value"
       label="Qtde. estoque"
       
-      type="Number"
+      type="number"
     ></v-text-field>
     
     <v-text-field
@@ -45,8 +45,22 @@
       :error-messages="qtde_und.errorMessage.value"
       label="Qtde. por Und."
       model-value="1"
-      type="Number"
+      type="number"
     ></v-text-field>
+    
+    <v-radio-group
+      v-model="inline"
+      inline
+      model="ativo"
+    >
+      <v-radio
+        label="Ativo"
+        
+      ></v-radio>
+      <v-radio
+        label="Não ativo"
+      ></v-radio>
+    </v-radio-group>
 
     <v-checkbox
       v-model="ativo.value.value"
@@ -110,9 +124,9 @@
             return 'Selecione uma marca'
           },
           ativo (value) {
-            if (value === '1') return true
-
-            return 'Must be checked.'
+            
+          
+            return value
           },
         },
       })
