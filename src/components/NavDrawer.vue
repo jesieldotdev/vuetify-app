@@ -25,7 +25,7 @@
           <v-list-item prepend-icon="mdi-package" :to="{path: '/estoque'}" title="Estoque" ></v-list-item>
           <v-list-item prepend-icon="mdi-account" :to="{path: '/clientes'}" title="Clientes" ></v-list-item>
           <v-list-item prepend-icon=" mdi-package-variant-plus" :to="{path: '/addproduto'}" title="Adicionar produto"></v-list-item>
-          <v-list-item prepend-icon=" mdi-account-plus" :to="{path: '/addusuario'}" title="Adicionar usuário"></v-list-item>
+          <v-list-item prepend-icon=" mdi-account-plus" :to="{path: '/addcliente'}" title="Adicionar cliente"></v-list-item>
           <v-divider></v-divider>
           <v-list-item prepend-icon=" mdi-cog" :to="{path: '/config'}" title="Configurações"></v-list-item>
         </v-list>
