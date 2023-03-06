@@ -44,6 +44,11 @@ const router = createRouter({
       path: '/config',
       name: 'configuracoes',
       component: () => import('../views/Config.vue')
+    },
+    {
+      path: '/novavenda',
+      name: 'novaVenda',
+      component: () => import('../views/novaVenda.vue')
     }
   ]
 })

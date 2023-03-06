@@ -23,6 +23,7 @@
       label="Preço da venda"
       prefix="R$"
       type="number"
+      step=0.01
     ></v-text-field>
 
     <v-select
@@ -44,32 +45,13 @@
       v-model="qtde_und.value.value"
       :error-messages="qtde_und.errorMessage.value"
       label="Qtde. por Und."
-      model-value="1"
+      
       type="number"
     ></v-text-field>
     
-    <v-radio-group
-      v-model="inline"
-      inline
-      model="ativo"
-    >
-      <v-radio
-        label="Ativo"
-        
-      ></v-radio>
-      <v-radio
-        label="Não ativo"
-      ></v-radio>
-    </v-radio-group>
-
-    <v-checkbox
-      v-model="ativo.value.value"
-      :error-messages="ativo.errorMessage.value"
-      value="1"
-      label="Ativo"
-      type="checkbox"
-    ></v-checkbox>
-
+    
+  <v-select v-model="ativo.value.value" :items="items_ativo" :error-messages="ativo.errorMessage.value"
+        label="Ativo"></v-select>
 
     <v-btn
       class="me-4"
@@ -125,9 +107,9 @@
             return 'Selecione uma marca'
           },
           ativo (value) {
-            
+            if (value != null) return true
           
-            return value
+            return 'Escolha um item'
           },
         },
       })
@@ -138,6 +120,7 @@
       const qtde_und = useField('qtde_und')
       const marca = useField('marca')
       const ativo = useField('ativo')
+      
 
       const items = ref([
         'VEI',
@@ -145,12 +128,17 @@
         'RIFEL',
         'TORK',
       ])
+      
+      const items_ativo = ref([
+      'Sim',
+      'Não'
+    ])
 
       const submit = handleSubmit(values => {
         alert(JSON.stringify(values, null, 2))
       })
 
-      return { cod, desc, preco, qtde, qtde_und, marca, ativo, items, submit, handleReset }
+      return { cod, desc, preco, qtde, qtde_und, marca, ativo, items_ativo, items, submit, handleReset }
     },
   }
 </script>
