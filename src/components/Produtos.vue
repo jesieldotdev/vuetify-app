@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="450">
+  <v-card class="mx-auto" max-width="">
     <v-toolbar color="transparent" height="88" flat>
       <!-- <template v-slot:prepend>
         <v-btn icon="mdi-arrow-left">
@@ -34,11 +34,26 @@
           </v-avatar> -->
         </template>
 
-        <v-list-item-title class="text-uppercase font-weight-regular text-caption" v-text="item.cod"></v-list-item-title>
+        <v-list-item-title class="text-uppercase font-weight-regular text-caption" v-text="`cod: ${item.cod}`"
+        ></v-list-item-title>
 
-        <div v-text="item.desc"></div>
+        <div v-text="`desc: ${item.desc}`"></div>
       </v-list-item>
     </v-list>
+
+    <v-list lines="three">
+      <v-list-item v-for="(item, i) in cart" :key="i"  link >
+        <template v-slot:prepend>
+  
+        </template>
+
+        <v-list-item-title class="text-uppercase font-weight-regular text-caption" v-text="item"></v-list-item-title>
+
+        <div v-text="item"></div>
+      </v-list-item>
+    </v-list>
+
+    
   </v-card>
 
 </template>
@@ -91,7 +106,10 @@ export default {
       if (item) {
         alert(cart)
       }
+
+      return cart
     }
+    
   }
   ,
 
