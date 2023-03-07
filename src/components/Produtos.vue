@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="">
-    <v-toolbar color="transparent" height="88" flat>
+    <v-toolbar color="dark" height="88" flat>
       <!-- <template v-slot:prepend>
         <v-btn icon="mdi-arrow-left">
         </v-btn>
@@ -34,33 +34,103 @@
           </v-avatar> -->
         </template>
 
+        <v-divider></v-divider>
+
+
         <v-list-item-title class="text-uppercase font-weight-regular text-caption" v-text="`cod: ${item.cod}`"
         ></v-list-item-title>
 
         <div v-text="`desc: ${item.desc}`"></div>
       </v-list-item>
     </v-list>
-
-    <v-list lines="three">
-      <v-list-item v-for="(item, i) in cart" :key="i"  link >
-        <template v-slot:prepend>
-  
-        </template>
-
-        <v-list-item-title class="text-uppercase font-weight-regular text-caption" v-text="item"></v-list-item-title>
-
-        <div v-text="item"></div>
-      </v-list-item>
-    </v-list>
-
-    
   </v-card>
 
+  <!-- <v-card color="" title="Carrinho"  class="mt-5"> -->
+    <v-divider></v-divider>
+
+    <v-row color="secondary" class="mt-5" v-for="item in cart" :key="items" >
+        <v-card  style='width: 100%;'  class='mx-2 mb-2 mt-2' >
+
+
+          <v-card-title>{{item.cod}}</v-card-title>
+          <v-card-text>{{ item.desc }}</v-card-text>
+
+          <v-table>
+    <thead>
+      <tr>
+        <th class="text-left">
+          Estoque
+        </th>
+        <th class="text-left">
+          A comprar
+        </th>
+        <th class="text-left">
+          Vlr. unit.
+        </th>
+        <th class="text-left">
+          Marca
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        
+      >
+        <td class="font-weight-bold">{{ item.qtde }}</td>
+        <td>1</td>
+        <td><p  class="font-weight-bold">R${{item.preco}}</p></td>
+        <td>{{item.marca}}</td>
+      </tr>
+    </tbody>
+          </v-table>
+          <!-- <v-divider></v-divider> -->
+
+          <v-card-actions>
+            <v-row justify="space-between" class="text-center">
+      <v-col>
+        <v-btn
+          icon="mdi-pencil"
+          color="primary"
+        ></v-btn>
+      </v-col>
+
+      <v-col>
+        <v-btn
+          icon="mdi-barcode-scan"
+          color="secondary"
+        ></v-btn>
+      </v-col>
+
+      <v-col>
+        <v-btn
+          icon="mdi-cached"
+          color="info"
+        ></v-btn>
+      </v-col>
+
+      <v-col>
+        <v-btn
+          icon="mdi-menu-down-outline"
+          color="light"
+        ></v-btn>
+      </v-col>
+    </v-row>
+          </v-card-actions>
+        </v-card>
+      <!-- </v-col> -->
+    </v-row>
+  <!-- </v-card> -->
 </template>
 
 <script>
+
+
 export default {
   data: () => ({
+    cart: []
+ ,
+    
+    
     items: [
       {
         image: 'https://cdn-images-1.medium.com/max/1024/1*9C9hLji68wV373tk8okLYA.jpeg',
@@ -91,26 +161,11 @@ export default {
     ],
     search: '',
     
+    
    
 
 
-  }),
-  methods: {
-    
-    addItem(item) {
-      const cart = []
-      
-      alert(item.cod)
-      cart.push(item.desc)
-   
-      if (item) {
-        alert(cart)
-      }
-
-      return cart
-    }
-    
-  }
+  })
   ,
 
   computed: {
@@ -138,6 +193,22 @@ export default {
         return text.indexOf(search) > -1
       })
     },
-  },
+  } ,
+  methods: {
+    
+    addItem(item) {
+      
+      
+      alert(item.cod)
+      this.cart.push(item)
+   
+      if (item) {
+        alert(this.cart)
+      }
+
+      
+    }
+    
+  }
 }
 </script>

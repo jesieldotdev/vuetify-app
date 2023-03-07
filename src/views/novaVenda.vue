@@ -1,76 +1,61 @@
 <template>
-  
-   <div class="container">
-       <h1 class=text-center>Nova venda</h1>
-       
-       
-  <form @submit.prevent="submit">
+  <div class="container">
+    <h1 class=text-center>Nova venda</h1>
 
-  <v-card class="">
-    <v-tabs
-      v-model="tab"
-      bg-color="dark"
-    >
-      <v-tab value="one">Geral</v-tab>
-      <v-tab value="two">Items</v-tab>
-      <v-tab value="three">Obs.</v-tab>
-    </v-tabs>
 
-    <v-card-text>
-      <v-window v-model="tab">
-        <v-window-item value="one">
-         
+    <form @submit.prevent="submit">
 
-<v-select
-v-model="cliente.value.value"
-      :items="clientes"
-      label="Cliente"
-      density="compact"
-      :error-messages="cliente.errorMessage.value"
-    ></v-select>
-    
-   
-      <v-text-field :counter="11" v-model="numero.value.value" :error-messages="numero.errorMessage.value"
-        label="Contato" type="phone"></v-text-field>
-        
-        <v-text-field 
-        v-model="calendar.value.value" 
-        type='date'
-        :error-messages="calendar.errorMessage.value"
-        label="Data"
-></v-text-field>
+      <v-card class="">
+        <v-tabs v-model="tab" bg-color="dark">
+          <v-tab value="one">Geral</v-tab>
+          <v-tab value="two">Items</v-tab>
+          <v-tab value="three">Obs.</v-tab>
+        </v-tabs>
 
-<v-select
-v-model="formaCob.value.value"
-      :items="forma_de_pagamento"
-      label="Forma de cobrança"
-      density="compact"
-      :error-messages="formaCob.errorMessage.value"
-    ></v-select>
-  
-        </v-window-item>
+        <v-card-text>
+          <v-window v-model="tab">
+            <v-window-item value="one">
 
-        <v-window-item value="two">
-          <Produtos />
-        </v-window-item>
 
-        <v-window-item value="three">
-          Three
-        </v-window-item>
-      </v-window>
-    </v-card-text>
-  </v-card>
-  
-        
-    <v-btn class="me-4 mt-4" type="submit">
+              <v-select v-model="cliente.value.value" :items="clientes" label="Cliente" density="compact"
+                :error-messages="cliente.errorMessage.value"></v-select>
+
+
+              <v-text-field :counter="11" v-model="numero.value.value" :error-messages="numero.errorMessage.value"
+                label="Contato" type="phone"></v-text-field>
+
+              <v-text-field v-model="calendar.value.value" type='date' :error-messages="calendar.errorMessage.value"
+                label="Data"></v-text-field>
+
+              <v-select v-model="formaCob.value.value" :items="forma_de_pagamento" label="Forma de cobrança"
+                density="compact" :error-messages="formaCob.errorMessage.value"></v-select>
+
+            </v-window-item>
+
+            <v-window-item value="two">
+              <Produtos />
+            </v-window-item>
+
+            <v-window-item value="three">
+              
+            </v-window-item>
+          </v-window>
+        </v-card-text>
+      </v-card>
+
+ 
+
+
+      <v-btn class="me-4 mt-4" type="submit">
         Salvar
       </v-btn>
+
 
       <v-btn class="mt-4" @click="handleReset">
         Limpar
       </v-btn>
-      </form>
-      
+    </form>
+
   </div>
 </template>
 
@@ -79,8 +64,12 @@ v-model="formaCob.value.value"
 import Produtos from '../components/Produtos.vue'
 import { ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
+
+
+
 export default {
   setup() {
+
     const { handleSubmit, handleReset } = useForm({
       validationSchema: {
         numero(value) {
@@ -107,18 +96,18 @@ export default {
           return 'Selecione uma forma'
 
         }
-        }
-        })
-        const cliente = useField('cliente')
-        const numero = useField('numero')
-        const calendar = useField('calendar')
-        const formaCob = useField('formaCob')
-        
-        const clientes = ref([
+      }
+    })
+    const cliente = useField('cliente')
+    const numero = useField('numero')
+    const calendar = useField('calendar')
+    const formaCob = useField('formaCob')
+
+    const clientes = ref([
       'Joãozinho',
       'Stefanny'
     ])
-    
+
 
     const forma_de_pagamento = ref([
       'Dinheiro',
@@ -128,24 +117,27 @@ export default {
       'Pix',
       'Boleto'
     ])
- const submit = handleSubmit(values => {
+    const submit = handleSubmit(values => {
       alert(JSON.stringify(values, null, 2))
     })
-    
-    return {numero, cliente, clientes, calendar, forma_de_pagamento, formaCob, submit, handleReset}
-        },
-          components: {
+
+    return { numero, cliente, clientes, calendar, forma_de_pagamento, formaCob, submit, handleReset }
+  },
+  components: {
     Produtos,
   },
   data: () => ({
-      tab: null,
-    }),
+    tab: null,
+    cart: []
+
+  })
+ 
+
+}
+
+</script>
   
-        }
-        
-  </script>
-  
-  <style scoped>
+<style scoped>
 .container {
   /*display: flex;*/
   margin: 20px;
