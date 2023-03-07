@@ -51,7 +51,7 @@ v-model="formaCob.value.value"
         </v-window-item>
 
         <v-window-item value="two">
-          Two
+          <Produtos />
         </v-window-item>
 
         <v-window-item value="three">
@@ -76,7 +76,7 @@ v-model="formaCob.value.value"
 
 
 <script>
-import Calendar from '../components/Calendar.vue'
+import Produtos from '../components/Produtos.vue'
 import { ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
 export default {
@@ -135,7 +135,7 @@ export default {
     return {numero, cliente, clientes, calendar, forma_de_pagamento, formaCob, submit, handleReset}
         },
           components: {
-    Calendar,
+    Produtos,
   },
   data: () => ({
       tab: null,
