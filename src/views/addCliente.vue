@@ -2,16 +2,6 @@
   <div class="container">
     <h1>Adicionar cliente</h1>
 
-    <!-- <v-img class="mx-auto" height="300"
-      lazy-src="https://www.shutterstock.com/image-vector/picture-icon-260nw-323592404.jpg"
-      src="https://images.unsplash.com/photo-1677629322846-606e5b24d718?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80 "
-      max-width="500">
-      <template v-slot:placeholder>
-        <div class="d-flex align-center justify-center fill-height">
-          <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-        </div>
-      </template>
-    </v-img> -->
 
     <form @submit.prevent="submit">
       <v-text-field v-model="cod.value.value" :counter="8" :error-messages="cod.errorMessage.value"
@@ -165,6 +155,6 @@ export default {
 <style scoped>
 .container {
   /*display: flex;*/
-  margin: 40px;
+  margin: 20px;
 }
 </style>

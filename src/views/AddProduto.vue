@@ -146,6 +146,6 @@
 <style scoped>
 .container{
   /*display: flex;*/
-  margin: 40px;
+  margin: 20px;
 }
 </style>
