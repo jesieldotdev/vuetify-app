@@ -15,10 +15,11 @@
 </template>
 
 <script>
+
 import NavDrawer from './components/NavDrawer.vue'
 import { RouterLink, RouterView } from 'vue-router'
   export default {
-
+    
     components: {
     NavDrawer,
   }

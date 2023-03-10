@@ -70,6 +70,10 @@
 <script>
   import { ref } from 'vue'
   import { useField, useForm } from 'vee-validate'
+import { collection, addDoc, onSnapshot, 
+        deleteDoc, updateDoc, doc,
+        query, orderBy, limit
+      } from "firebase/firestore"
 
   export default {
     setup () {

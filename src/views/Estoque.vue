@@ -88,6 +88,41 @@
 </style>
 
 <script>
+// import { ref, onMounted } from 'vue'
+// import { db } from '@/firebase/'
+// import { collection, addDoc, onSnapshot, 
+//         deleteDoc, updateDoc, doc,
+//         query, orderBy, limit
+//       } from "firebase/firestore"
+
+
+//const produtos = ref() 
+// const firebaseCollection = collection(db, 'produtos')
+// const firebaseCollectionQuery = query(firebaseCollfirebase)
+
+
+
+
+// onMounted(async () => {
+  
+//   onSnapshot(firebaseCollectionQuery, (querySnapshot) => {
+//     const fbProdutos = []
+//     querySnapshot.forEach((prod) => {
+//       const produtos = {
+//         id: prod.cod,
+//         doc: prod.data().desc,
+//         marca: prod.data().marca,
+//         preco: prod.data().preco,
+//         qtde: prod.data().qtde,
+//         qtde_und: prod.data().qtde_und,
+//       }
+//       fbProdutos.push(produtos)
+//     })
+//     produtos.value = fbProdutos
+//   })
+
+// })
+
 export default {
   data: () => ({
     items: [
@@ -98,7 +133,7 @@ export default {
       marca: 'VEI',
       qtde: 23,
       qtde_und: 1,
-       },
+      },
       {
       cod: '223256',
       desc: 'shsv',
@@ -106,8 +141,8 @@ export default {
       marca: 'VEI',
       qtde: 23,
       qtde_und: 1,
-       },
-     ]
+      },
+    ]
   })
 }
 </script>
