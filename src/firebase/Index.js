@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "estoque-app-1662a.appspot.com",
   messagingSenderId: "617999548545",
   appId: "1:617999548545:web:5e630852905df3af73cd80"
-};
+  }
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
