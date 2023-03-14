@@ -1,11 +1,11 @@
 <template>
-  <v-btn class="mx-auto mt-3 ms-3" id="btn" variant="flat" to="/addproduto" color="info">Adicionar produto
+  <v-btn class="mx-auto mt-3 ms-3" id="btn" variant="flat" @click='verBanco' color="info">Adicionar produto
 
   </v-btn>
 
   <v-container>
     <!-- <v-row> -->
-    <v-row v-for="item in items" :key="items">
+    <v-row v-for="item in prods" :key="prods">
       <v-card style='width: 100%;' class='mx-2 mb-2 mt-2'>
 
 
@@ -76,77 +76,38 @@
 </style>
 
 <script>
-import { ref, onMounted } from 'vue'
-import { db } from '@/firebase/'
-import {
-  collection, getDocs, addDoc, onSnapshot,
-  deleteDoc, updateDoc, doc,
-  query, orderBy, limit
-} from "firebase/firestore"
-
-
-const q = query(collection(db, "produtos"));
-
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-
-
-
-
-// onMounted(async () => {
-
-//   onSnapshot(firebaseCollection, (querySnapshot) => {
-//     let fbProdutos = []
-//     querySnapshot.forEach((prod) => {
-//       let produtos = {
-//         id: prod.cod,
-//         doc: prod.data().desc,
-//         marca: prod.data().marca,
-//         preco: prod.data().preco,
-//         qtde: prod.data().qtde,
-//         qtde_und: prod.data().qtde_und,
-//       }
-//       fbProdutos.push(produtos)
-//     })
-//     produtos.value = fbProdutos
-
-
-//   })
-
-//   console.log(fbProdutos)
-// })
-
-// console.log(produtos)
+import prodColRef from "../firebase";
+import { getDocs, doc, deleteDoc } from "firebase/firestore";
 export default {
-  data: () => ({
-    items: [
-      {
-        cod: '336256AM',
-        desc: 'Cabo Embreagem NXR200',
-        preco: '65,90',
-        marca: 'VEI',
-        qtde: 23,
-        qtde_und: 1,
-      },
-      {
-        cod: '223256',
-        desc: 'shsv',
-        preco: '65,90',
-        marca: 'VEI',
-        qtde: 23,
-        qtde_und: 1,
-      },
-
-    ]
-  }),
-
+  name: "Home",
+  components: {},
+  data() {
+    return {
+      prods: [],
+      selectedDoc: null,
+    };
+  },
   methods: {
-    verBanco() {
-      console.log('Ver reesultado')
-    }
-  }
-}
+    async fetchProds() {
+      let prodsSnapShot = await getDocs(prodColRef);
+      let prods = [];
+      prodsSnapShot.forEach((prod) => {
+        let prodData = prod.data();
+        prodData.id = prod.id;
+        prods.push(prodData);
+      });
+      console.log(prods);
+      this.prods = prods;
+    },
+    async deleteCity(prodId) {
+      let prodRef = doc(prodColRef, prodId);
+      await deleteDoc(prodRef);
+      alert("City deleted successully!");
+      this.$router.go();
+    },
+  },
+  created() {
+    this.fetchProds();
+  },
+};
 </script>
