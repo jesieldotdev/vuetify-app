@@ -45,7 +45,7 @@ import {
   deleteDoc, updateDoc, doc,
   query, orderBy, limit
 } from "firebase/firestore"
-import { db } from '@/firebase/'
+import prodColRef from '../firebase/'
 import { FlashMessage } from '@smartweb/vue-flash-message';
 
 
@@ -114,8 +114,8 @@ export default {
 
 
     const submit = handleSubmit(values => {
-      const produtosRef = doc(db, 'produtos', values.cod);
-    setDoc(produtosRef, values);
+      
+    addDoc(prodColRef, values);
    
     })
 
