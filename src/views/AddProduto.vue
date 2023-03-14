@@ -116,6 +116,9 @@ export default {
     const submit = handleSubmit(values => {
       
     addDoc(prodColRef, values);
+    alert("Document created successfully!");
+    console.log(values);
+    router.push({ path: '/' })
    
     })
 
