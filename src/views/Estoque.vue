@@ -57,7 +57,8 @@
             </v-col>
 
             <v-col>
-              <v-btn icon="mdi-menu-down-outline" color="light"></v-btn>
+              <!-- <v-btn icon="mdi-menu-down-outline" color="light"></v-btn> -->
+              <Menu />
             </v-col>
           </v-row>
         </v-card-actions>
@@ -76,6 +77,7 @@
 </style>
 
 <script>
+import Menu from '../components/Menu.vue'
 import prodColRef from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
 export default {
@@ -109,5 +111,9 @@ export default {
   created() {
     this.fetchProds();
   },
+
+  components: {
+    Menu
+  }
 };
 </script>
