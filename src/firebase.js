@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
+import { getFirestore, collection, doc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -16,5 +16,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // Initialize Firebase
 const prodColRef = collection(db, "produtos");
-export default prodColRef;
+// const prodCod = doc(db, "produtos", values.cod);
+export default prodColRef
 

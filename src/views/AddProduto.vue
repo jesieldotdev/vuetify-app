@@ -46,6 +46,7 @@ import {
   query, orderBy, limit
 } from "firebase/firestore"
 import prodColRef from '../firebase/'
+// import prodCod from '../firebase/'
 import { FlashMessage } from '@smartweb/vue-flash-message';
 
 
@@ -118,14 +119,26 @@ export default {
     addDoc(prodColRef, values);
     alert("Document created successfully!");
     console.log(values);
-    router.push({ path: '/' })
+    router.push({ path: '/' });
+    
    
     })
 
     
     return { cod, desc, preco, qtde, qtde_und, marca, ativo, items_ativo, items, submit, handleReset }
   },
-
+ 
+// methods: {
+//   handleSubmit(values => {
+//     async createProd() {
+//       console.log("Creating t");
+//       const addedDoc = await addDoc(prodColRef, values);
+//       alert("Document created successfully!");
+//       console.log(addedDoc);
+//       this.$router.push("/");
+//     },
+  
+//   }
 }
 
 

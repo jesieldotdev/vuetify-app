@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="mx-auto mt-3 ms-3" id="btn" variant="flat" @click='verBanco' color="info">Adicionar produto
+  <v-btn class="mx-auto mt-3 ms-3" id="btn" variant="flat" :to="{path: '/addproduto'}" color="info">Adicionar produto
 
   </v-btn>
 
@@ -57,8 +57,8 @@
             </v-col>
 
             <v-col>
-              <!-- <v-btn icon="mdi-menu-down-outline" color="light"></v-btn> -->
-              <Menu />
+               <v-btn @click="deleteProd(item.id)" icon="mdi-delete-outline" color="light"></v-btn> 
+              <!--<Menu />-->
             </v-col>
           </v-row>
         </v-card-actions>
@@ -98,19 +98,27 @@ export default {
         prodData.id = prod.id;
         prods.push(prodData);
       });
-      console.log(prods);
+      // console.log(prods);
       this.prods = prods;
     },
-    async deleteCity(prodId) {
+    async deleteProd(prodId) {
       let prodRef = doc(prodColRef, prodId);
       await deleteDoc(prodRef);
-      alert("City deleted successully!");
-      this.$router.go();
+      alert("Produto excluido com sucesso!");
+      
+    },
+    
+    editar() {
+      alert("Rota de edição!!!∆")
+    },
+    excluir() {
+      console.log("Rota de exclusão!!!∆")
     },
   },
   created() {
     this.fetchProds();
   },
+  
 
   components: {
     Menu
