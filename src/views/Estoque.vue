@@ -1,7 +1,14 @@
 <template>
-  <v-btn class="mx-auto mt-3 ms-3" id="btn" variant="flat" :to="{path: '/addproduto'}" color="info">Adicionar produto
+  <div id="bt-top" class="">
+  <v-btn
+      class=" mt-3 "
+      color="blue-grey"
+      prepend-icon="mdi-cloud-upload"
+      :to="{path: '/addproduto'}" >
+   Adicionar produto
 
   </v-btn>
+</div>
 
   <v-container>
     <!-- <v-row> -->
@@ -125,3 +132,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  #bt-top{
+    margin: 0 auto;
+    width: 250px;
+  }
+</style>
