@@ -26,9 +26,18 @@
       <v-select v-model="ativo.value.value" :items="items_ativo" :error-messages="ativo.errorMessage.value"
         label="Ativo"></v-select>
 
-      <v-btn class="me-4" type="submit">
-        Salvar
-      </v-btn>
+    
+         
+    
+        <v-btn
+        class="me-4" type="submit"
+        
+        >
+          Salvar
+        </v-btn>
+
+
+
 
       <v-btn @click="handleReset">
         Limpar
@@ -51,6 +60,9 @@ import { FlashMessage } from '@smartweb/vue-flash-message';
 
 
 export default {
+
+
+
   setup() {
     const { handleSubmit, handleReset } = useForm({
       validationSchema: {
@@ -101,6 +113,7 @@ export default {
     const ativo = useField('ativo')
 
 
+
     const items = ref([
       'VEI',
       'EVOL',
@@ -127,6 +140,9 @@ export default {
     
     return { cod, desc, preco, qtde, qtde_und, marca, ativo, items_ativo, items, submit, handleReset }
   },
+
+
+
  
 // methods: {
 //   handleSubmit(values => {
@@ -139,6 +155,13 @@ export default {
 //     },
   
 //   }
+
+    data () {
+      return {
+    dialog: false,
+  }
+  },
+
 }
 
 
