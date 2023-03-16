@@ -59,12 +59,42 @@
               <v-btn icon="mdi-barcode-scan" color="secondary"></v-btn>
             </v-col>
 
+
+
             <v-col>
               <v-btn icon="mdi-cached" color="info"></v-btn>
             </v-col>
 
+
             <v-col>
-               <v-btn @click="deleteProd(item.id)" icon="mdi-delete-outline" color="light"></v-btn> 
+<div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <template v-slot:activator="{ props }">
+        <v-btn
+          icon="mdi-delete-outline" color="light"
+          v-bind="props"
+        >
+        
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-text>
+          Certeza que você deseja remover o produto do inventário?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" block @click="dialog = false">Sim</v-btn>
+          <v-btn color="primary" block @click="dialog = false">Não</v-btn>
+         
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+
+     
               <!--<Menu />-->
             </v-col>
           </v-row>
@@ -94,6 +124,7 @@ export default {
     return {
       prods: [],
       selectedDoc: null,
+      dialog: false,
     };
   },
   methods: {
@@ -122,6 +153,7 @@ export default {
       console.log("Rota de exclusão!!!∆")
     },
   },
+
   created() {
     this.fetchProds();
   },
@@ -129,7 +161,9 @@ export default {
 
   components: {
     Menu
-  }
+  },
+
+
 };
 </script>
 
