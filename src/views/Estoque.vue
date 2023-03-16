@@ -52,8 +52,10 @@
         <v-card-actions>
           <v-row justify="space-between" class="text-center">
             <v-col>
-              <v-btn icon="mdi-pencil" color="primary"></v-btn>
+              
+              <Editar />
             </v-col>
+
 
             <v-col>
               <v-btn icon="mdi-barcode-scan" color="secondary"></v-btn>
@@ -86,8 +88,10 @@
           Certeza que você deseja remover o produto do inventário?
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block @click="dialog = false">Sim</v-btn>
-          <v-btn color="primary" block @click="dialog = false">Não</v-btn>
+          <v-btn color="primary" block @click=deleteProd(item.id)>Sim</v-btn>
+
+          <v-btn color="primary">Não</v-btn>
+
          
         </v-card-actions>
       </v-card>
@@ -115,6 +119,8 @@
 
 <script>
 import Menu from '../components/Menu.vue'
+import Editar from '../components/Editar.vue'
+
 import prodColRef from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
 export default {
@@ -143,6 +149,7 @@ export default {
       let prodRef = doc(prodColRef, prodId);
       await deleteDoc(prodRef);
       alert("Produto excluido com sucesso!");
+
       
     },
     
@@ -160,7 +167,8 @@ export default {
   
 
   components: {
-    Menu
+    Menu,
+    Editar
   },
 
 
