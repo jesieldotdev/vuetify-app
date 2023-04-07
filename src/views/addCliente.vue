@@ -52,6 +52,8 @@
 <script>
 import { ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
+// import clienteRef from '../firebase/'
+// import db from '../firebase/'
 
 export default {
   setup() {
@@ -144,7 +146,12 @@ export default {
     ])
 
     const submit = handleSubmit(values => {
-      alert(JSON.stringify(values, null, 2))
+      alert('usgg')
+    //   const clienteId = doc(db, "clientes", values.id;  
+    // setDoc(clienteId, values);
+    // alert("Document created successfully!");
+    // console.log(values);
+    // router.push({ path: '/' });
     })
 
     return { cod, nome, fantasia, email, numero, tipoDoc, tipos, doc, credito, formaPag, forma_de_pagamento, ativo, items, submit, handleReset }

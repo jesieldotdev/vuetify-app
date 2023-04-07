@@ -24,7 +24,7 @@
     <v-divider></v-divider>
 
     <v-list lines="three">
-      <v-list-item v-for="(item, i) in searching" :key="i"  link @click="addItem(item)">
+      <v-list-item v-for="(item, i) in prods" :key="i"  link @click="addItem(item)">
         <template v-slot:prepend>
           <!-- <v-avatar
             class="me-4 mt-2"
@@ -131,34 +131,8 @@ export default {
  ,
     
     
-    items: [
-      {
-        image: 'https://cdn-images-1.medium.com/max/1024/1*9C9hLji68wV373tk8okLYA.jpeg',
-        cod: '336226AM',
-        desc: 'Cabo Embreagem NXR200',
-        preco: '87,80',
-        keyword: 'Drinks',
-
-      },
-      {
-        image: 'https://cdn-images-1.medium.com/max/1024/1*9C9hLji68wV373tk8okLYA.jpeg',
-        cod: '347582',
-        desc: 'Chave de Luz Titan KS',
-        preco: '34,50',
-        keyword: 'Drinks',
-
-      },
-      {
-        image: 'https://cdn-images-1.medium.com/max/1024/1*9C9hLji68wV373tk8okLYA.jpeg',
-        cod: 'K432550',
-        desc: 'Kit Carenagem Biz125',
-        preco: '150,89',
-        keyword: 'Drinks',
-
-      },
-
-
-    ],
+    items: prods
+,
     search: '',
     
     
@@ -205,9 +179,21 @@ export default {
       if (item) {
         alert(this.cart)
       }
-
       
-    }
+    },
+    async fetchProds() {
+
+      let prodsSnapShot = await getDocs(prodColRef);
+
+      let prods = [];
+      prodsSnapShot.forEach((prod) => {
+        let prodData = prod.data();
+        prodData.id = prod.id;
+        prods.push(prodData);
+      });
+      // console.log(prods);
+      this.prods = prods;
+    },
     
   }
 }

@@ -12,7 +12,7 @@
 
   <v-container>
     <!-- <v-row> -->
-    <v-row v-for="item in prods" :key="prods">
+    <v-row v-for="item in prods" >
       <v-card style='width: 100%;' class='mx-2 mb-2 mt-2'>
 
 
@@ -69,33 +69,53 @@
 
 
             <v-col>
-<div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      width="auto"
-    >
-      <template v-slot:activator="{ props }">
-        <v-btn
-          icon="mdi-delete-outline" color="light"
-          v-bind="props"
-        >
+<div class="text-center">
+
+    <v-dialog
+
+      v-model="dialog"
+
+      width="auto"
+
+    >
+
+      <template v-slot:activator="{ props }">
+
+        <v-btn
+
+          icon="mdi-delete-outline" color="light"
+
+          v-bind="props"
+
+        >
+
         
-        </v-btn>
-      </template>
-
-      <v-card>
-        <v-card-text>
-          Certeza que você deseja remover o produto do inventário?
-        </v-card-text>
-        <v-card-actions>
+        </v-btn>
+
+      </template>
+
+
+
+      <v-card>
+
+        <v-card-text>
+
+          Certeza que você deseja remover {{ item.desc }} do inventário?
+        </v-card-text>
+
+        <v-card-actions>
+
           <v-btn color="primary" block @click=deleteProd(item.id)>Sim</v-btn>
 
           <v-btn color="primary">Não</v-btn>
 
          
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+        </v-card-actions>
+
+      </v-card>
+
+    </v-dialog>
+
   </div>
 
      
@@ -147,8 +167,9 @@ export default {
     },
     async deleteProd(prodId) {
       let prodRef = doc(prodColRef, prodId);
-      await deleteDoc(prodRef);
-      alert("Produto excluido com sucesso!");
+      alert(prodId)
+      // await deleteDoc(prodRef);
+      // alert("Produto excluido com sucesso!");
 
       
     },

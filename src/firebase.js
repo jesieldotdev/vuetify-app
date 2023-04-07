@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // Initialize Firebase
 const prodColRef = collection(db, "produtos");
+const clienteRef = collection(db, "clientes");
 // const prodCod = doc(db, "produtos", values.cod);
 export default prodColRef
 
