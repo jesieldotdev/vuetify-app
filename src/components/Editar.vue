@@ -7,7 +7,7 @@
     >
       <template v-slot:activator="{ props }">
         <v-btn icon="mdi-pencil" color="primary"
-          v-bind="props"
+          v-bind="props" 
         >
          
         </v-btn>
@@ -25,9 +25,11 @@
                 md="4"
               >
                 <v-text-field
-                  label="Legal first name*"
+                  label="Descrição"
+                  v-bind:value="myProp.desc"
                   required
                 ></v-text-field>
+                <p>  </p>
               </v-col>
               <v-col
                 cols="12"
@@ -35,8 +37,9 @@
                 md="4"
               >
                 <v-text-field
-                  label="Legal middle name"
-                  hint="example of helper text only on focus"
+                  label="Código"
+                  
+                  v-bind:value="myProp.cod"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -44,49 +47,46 @@
                 sm="6"
                 md="4"
               >
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
+                 <v-text-field label="Preço da venda"
+        prefix="R$" type="number" v-bind:value="myProp.preco" step=0.01></v-text-field>
+        
               </v-col>
               <v-col cols="12">
-                <v-text-field
-                  label="Email*"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  label="Password*"
-                  type="password"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
                 <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
+                  :items="marcas"
+                  label="Marca"
+                  v-bind:value="myProp.marca"
+                  
                 ></v-autocomplete>
+              </v-col>
+             
+              <v-col cols="12">
+               <v-text-field label="Qtde. estoque"
+               v-bind:value="myProp.qtde"
+        type="number"></v-text-field>
+              </v-col>
+              
+              <v-col
+                cols="12"
+                sm="6"
+              >
+<v-text-field  label="Qtde. por Und."
+v-bind:value="myProp.qtde_und"
+        type="number"></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                 <v-select :items="['SIM', 'NÃO']"
+                 v-bind:value="myProp.ativo"
+        label="Ativo"></v-select>
+                
+              
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
+          <small>*Preencha os campos</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -95,14 +95,14 @@
             variant="text"
             @click="dialog = false"
           >
-            Close
+            Fechar
           </v-btn>
           <v-btn
             color="blue-darken-1"
             variant="text"
             @click="dialog = false"
           >
-            Save
+            Atualizar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -114,6 +114,13 @@
   export default {
     data: () => ({
       dialog: false,
+      marcas: ["RIFFEL", "TORK", "VEI", "EVOL"]
     }),
+    props: {
+    myProp: {
+      type: String,
+      required: true
+    }
+  }
   }
 </script>

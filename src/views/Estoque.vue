@@ -18,6 +18,8 @@
 
         <v-card-title>{{ item.cod }}</v-card-title>
         <v-card-text>{{ item.desc }}</v-card-text>
+        
+        <v-btn block class="mx-3" @click="deleteProd(item.id)">Selecionar</v-btn>
 
         <v-table>
           <thead>
@@ -53,7 +55,7 @@
           <v-row justify="space-between" class="text-center">
             <v-col>
               
-              <Editar />
+              <Editar :my-prop="item" />
             </v-col>
 
 
@@ -71,51 +73,20 @@
             <v-col>
 <div class="text-center">
 
-    <v-dialog
-
-      v-model="dialog"
-
-      width="auto"
-
-    >
-
-      <template v-slot:activator="{ props }">
+ 
 
         <v-btn
 
           icon="mdi-delete-outline" color="light"
 
-          v-bind="props"
+          @click="deleteProd(item)"
 
         >
 
         
         </v-btn>
 
-      </template>
-
-
-
-      <v-card>
-
-        <v-card-text>
-
-          Certeza que você deseja remover {{ item.desc }} do inventário?
-        </v-card-text>
-
-        <v-card-actions>
-
-          <v-btn color="primary" block @click=deleteProd(item.id)>Sim</v-btn>
-
-          <v-btn color="primary">Não</v-btn>
-
-         
-        </v-card-actions>
-
-      </v-card>
-
-    </v-dialog>
-
+ 
   </div>
 
      
@@ -140,9 +111,31 @@
 <script>
 import Menu from '../components/Menu.vue'
 import Editar from '../components/Editar.vue'
-
 import prodColRef from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
+
+// const todos = ref()
+// const firebaseCollection = collection(db, 'todos')
+// const firebaseCollectionQuery = query(firebaseCollection, orderBy('date', 'desc'))
+
+// onMounted(async () => {
+
+//   // ler dados
+//   onSnapshot(firebaseCollectionQuery, (querySnapshot) => {
+//     const fbTodos = []
+//     querySnapshot.forEach((doc) => {
+//       const todo = {
+//         id: doc.id,
+//         content: doc.data().content,
+//         done: doc.data().done
+//       }
+//       fbTodos.push(todo)
+//     })
+//     todos.value = fbTodos
+//   })
+
+// })
+
 export default {
   name: "Home",
   components: {},
@@ -165,11 +158,11 @@ export default {
       // console.log(prods);
       this.prods = prods;
     },
-    async deleteProd(prodId) {
-      let prodRef = doc(prodColRef, prodId);
-      alert(prodId)
-      // await deleteDoc(prodRef);
-      // alert("Produto excluido com sucesso!");
+    async deleteProd(prod) {
+      let prodRef = doc(prodColRef, prod.id);
+      alert("Deletando o produto: " + prod.desc)
+      await deleteDoc(prodRef);
+      alert("Produto excluido com sucesso!");
 
       
     },

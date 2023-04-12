@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import {FlashMessage} from '@smartweb/vue-flash-message';
+import { firestorePlugin } from 'vuefire'
 
 
 // Vuetify
@@ -17,6 +18,8 @@ const vuetify = createVuetify({
   directives,
 })
 
-let app = createApp(App).use(router).use(vuetify).use(FlashMessage)
+let app = createApp(App).use(router).use(vuetify).use(FlashMessage).use(firestorePlugin)
+
 
 app.mount('#app')
+
