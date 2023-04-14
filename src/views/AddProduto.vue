@@ -29,13 +29,10 @@
     
          
     
-        <v-btn
-        class="me-4" type="submit"
-        
-        >
-          Salvar
-        </v-btn>
+  
 
+
+    <DialogComp :my-prop="items" />
 
 
 
@@ -43,6 +40,8 @@
         Limpar
       </v-btn>
     </form>
+
+
   </div>
 </template>
 
@@ -57,6 +56,7 @@ import {
 import prodColRef from '../firebase/'
 // import prodCod from '../firebase/'
 import { FlashMessage } from '@smartweb/vue-flash-message';
+import DialogComp from '../components/DialogComp.vue'
 
 
 export default {
@@ -130,9 +130,8 @@ export default {
     const submit = handleSubmit(values => {
       
     addDoc(prodColRef, values);
-    alert("Document created successfully!");
+    // alert("Document created successfully!");
     console.log(values);
-    router.push({ path: '/' });
     
    
     })
@@ -160,6 +159,10 @@ export default {
       return {
     dialog: false,
   }
+  },
+
+  components: {
+    DialogComp
   },
 
 }

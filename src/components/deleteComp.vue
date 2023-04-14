@@ -70,7 +70,8 @@ import { getDocs, doc, deleteDoc } from "firebase/firestore";
       await deleteDoc(prodRef);
       this.loading = false
       this.dialog= false
-     //  window.location.reload()
+      await new Promise(r => setTimeout(r, 2000));
+      window.location.reload()
      
 
       
