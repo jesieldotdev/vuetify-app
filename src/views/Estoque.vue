@@ -10,6 +10,8 @@
   </v-btn>
 </div>
 
+<alertComp />
+
   <v-container>
     <!-- <v-row> -->
     <v-row v-for="item in prods" >
@@ -18,8 +20,7 @@
 
         <v-card-title>{{ item.cod }}</v-card-title>
         <v-card-text>{{ item.desc }}</v-card-text>
-        
-        <v-btn block class="mx-3" @click="deleteProd(item.id)">Selecionar</v-btn>
+       
 
         <v-table>
           <thead>
@@ -56,6 +57,7 @@
             <v-col>
               
               <Editar :my-prop="item" />
+              
             </v-col>
 
 
@@ -70,23 +72,15 @@
             </v-col>
 
 
-            <v-col>
+            <v-col> 
+ 
+
+   
+ 
 <div class="text-center">
 
- 
+<deleteComp :my-prop="item"></deleteComp>
 
-        <v-btn
-
-          icon="mdi-delete-outline" color="light"
-
-          @click="deleteProd(item)"
-
-        >
-
-        
-        </v-btn>
-
- 
   </div>
 
      
@@ -111,30 +105,11 @@
 <script>
 import Menu from '../components/Menu.vue'
 import Editar from '../components/Editar.vue'
+import deleteComp from '../components/deleteComp.vue'
+import alertComp from '../components/alertComp.vue'
+
 import prodColRef from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
-
-// const todos = ref()
-// const firebaseCollection = collection(db, 'todos')
-// const firebaseCollectionQuery = query(firebaseCollection, orderBy('date', 'desc'))
-
-// onMounted(async () => {
-
-//   // ler dados
-//   onSnapshot(firebaseCollectionQuery, (querySnapshot) => {
-//     const fbTodos = []
-//     querySnapshot.forEach((doc) => {
-//       const todo = {
-//         id: doc.id,
-//         content: doc.data().content,
-//         done: doc.data().done
-//       }
-//       fbTodos.push(todo)
-//     })
-//     todos.value = fbTodos
-//   })
-
-// })
 
 export default {
   name: "Home",
@@ -166,13 +141,6 @@ export default {
 
       
     },
-    
-    editar() {
-      alert("Rota de edição!!!∆")
-    },
-    excluir() {
-      console.log("Rota de exclusão!!!∆")
-    },
   },
 
   created() {
@@ -182,7 +150,10 @@ export default {
 
   components: {
     Menu,
-    Editar
+    Editar,
+    deleteComp,
+    alertComp
+    
   },
 
 
