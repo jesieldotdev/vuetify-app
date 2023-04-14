@@ -31,9 +31,6 @@
     
         <v-btn
         class="me-4" type="submit"
-        :disabled="loading"
-        :loading="loading"
-        @click="enviarDados()"
         
         >
           Salvar
@@ -64,8 +61,9 @@ import { FlashMessage } from '@smartweb/vue-flash-message';
 
 export default {
 
+
+
   setup() {
-    
     const { handleSubmit, handleReset } = useForm({
       validationSchema: {
         cod(value) {
@@ -130,11 +128,12 @@ export default {
 
 
     const submit = handleSubmit(values => {
-    this.loading = true  
+      
     addDoc(prodColRef, values);
     alert("Document created successfully!");
     console.log(values);
     router.push({ path: '/' });
+    
    
     })
 
@@ -145,19 +144,21 @@ export default {
 
 
  
-methods: {
-  enviarDados() {
-    // this.loading = true
-    // this.loading = false
-    // pass
-
-}
-  },
+// methods: {
+//   handleSubmit(values => {
+//     async createProd() {
+//       console.log("Creating t");
+//       const addedDoc = await addDoc(prodColRef, values);
+//       alert("Document created successfully!");
+//       console.log(addedDoc);
+//       this.$router.push("/");
+//     },
+  
+//   }
 
     data () {
       return {
     dialog: false,
-    loading: false,
   }
   },
 

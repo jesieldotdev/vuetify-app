@@ -10,7 +10,7 @@
   </v-btn>
 </div>
 
-<alertComp />
+<!-- <alertComp /> -->
 
   <v-container>
     <!-- <v-row> -->
