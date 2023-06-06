@@ -1,9 +1,10 @@
 
 
 <template>
+  <div class="bg-image">
   <v-container>
     <v-row>
-      <v-col v-for="item in items" :key="items" cols="4">
+      <v-col v-for="item in items" :key="items" cols="6">
         <v-card :to="item.link" height="200">
           <v-img
               :src="item.pic"
@@ -21,6 +22,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </div>
 </template>
 
 <script>
@@ -60,3 +62,10 @@ export default {
   }),
 }
 </script>
+
+<style>
+.bg-image {
+  background-image: url('/assets/bg_drawer.jpg');
+}
+
+</style>

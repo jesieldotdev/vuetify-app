@@ -37,7 +37,7 @@
             </v-window-item>
 
             <v-window-item value="three">
-              
+              <v-text-field class="mt-2" variant="outlined" label="Observação"></v-text-field>
             </v-window-item>
           </v-window>
         </v-card-text>

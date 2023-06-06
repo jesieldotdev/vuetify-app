@@ -26,13 +26,19 @@
       <v-select v-model="ativo.value.value" :items="items_ativo" :error-messages="ativo.errorMessage.value"
         label="Ativo"></v-select>
 
-    
+   
          
     
-  
+        <v-btn
+        class="me-4" type="submit"
+        :disabled="loading"
+        :loading="loading"
+        @click="enviarDados()"
+        
+        >
+          Salvar
+        </v-btn>
 
-
-    <DialogComp :my-prop="items" />
 
 
 
@@ -40,8 +46,6 @@
         Limpar
       </v-btn>
     </form>
-
-
   </div>
 </template>
 
@@ -56,14 +60,12 @@ import {
 import prodColRef from '../firebase/'
 // import prodCod from '../firebase/'
 import { FlashMessage } from '@smartweb/vue-flash-message';
-import DialogComp from '../components/DialogComp.vue'
 
 
 export default {
 
-
-
   setup() {
+    
     const { handleSubmit, handleReset } = useForm({
       validationSchema: {
         cod(value) {
@@ -128,11 +130,11 @@ export default {
 
 
     const submit = handleSubmit(values => {
-      
+    this.loading = true  
     addDoc(prodColRef, values);
-    // alert("Document created successfully!");
+    alert("Document created successfully!");
     console.log(values);
-    
+    router.push({ path: '/' });
    
     })
 
@@ -143,26 +145,20 @@ export default {
 
 
  
-// methods: {
-//   handleSubmit(values => {
-//     async createProd() {
-//       console.log("Creating t");
-//       const addedDoc = await addDoc(prodColRef, values);
-//       alert("Document created successfully!");
-//       console.log(addedDoc);
-//       this.$router.push("/");
-//     },
-  
-//   }
+methods: {
+  enviarDados() {
+    // this.loading = true
+    // this.loading = false
+    // pass
+
+}
+  },
 
     data () {
       return {
     dialog: false,
+    loading: false,
   }
-  },
-
-  components: {
-    DialogComp
   },
 
 }

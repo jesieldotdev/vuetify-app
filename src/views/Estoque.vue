@@ -10,8 +10,6 @@
   </v-btn>
 </div>
 
-<!-- <alertComp /> -->
-
   <v-container>
     <!-- <v-row> -->
 
@@ -19,8 +17,7 @@
     <v-row v-for="item in prods" >
       <v-card style='width: 100%;' class='mx-2 mb-2 mt-2'>
 
- <v-skeleton-loader :content="cardItem">
-    </v-skeleton-loader>
+ 
         <v-card-title>{{ item.cod }}</v-card-title>
         <v-card-text>{{ item.desc }}</v-card-text>
        
@@ -114,7 +111,7 @@ import alertComp from '../components/alertComp.vue'
 
 import prodColRef from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
-import VSkeletonLoader from 'v-skeleton-loader'
+
 
 export default {
   name: "Home",
@@ -162,9 +159,7 @@ export default {
     Menu,
     Editar,
     deleteComp,
-    alertComp,
-    VSkeletonLoader
-    
+    alertComp
   },
 
 
